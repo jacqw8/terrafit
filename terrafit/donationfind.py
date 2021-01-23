@@ -2,12 +2,11 @@ from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
 
-def get_places():
+def get_places(zip):
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     PATH = "/Users/alliewu/Desktop/chromedriver"
     driver = webdriver.Chrome(PATH, options=options)
-    zip = '77005'
     link = 'http://google.com/maps/search/' + zip + '+donation+clothes/'
     driver.get(link)
     places = driver.find_elements_by_class_name('section-result-title')

@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from terrafit import app, db, bcrypt
-from terrafit.forms import RegistrationForm, LoginForm
+from terrafit.forms import RegistrationForm, LoginForm, ReusableForm
 from terrafit.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from terrafit import donationfind
@@ -21,7 +21,6 @@ posts = [
     }
 ]
 
-clothes = donationfind.get_places()
 
 @app.route("/garden")
 @login_required
@@ -75,9 +74,14 @@ def account():
 def index():
     return render_template('index.html')
 
-@app.route("/map")
+@app.route("/map", methods=['GET', 'POST'])
 def map():
-    return render_template('map.html', clothes=clothes)
+    form = ReusableForm()
+    if form.validate_on_submit():
+        clothes = donationfind.get_places(form.zipcode.data)
+    else:
+        flash("Please re-enter zipcode.")
+    return render_template('map.html')
 
 @app.before_first_request
 def create_tables():
