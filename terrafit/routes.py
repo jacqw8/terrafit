@@ -68,7 +68,7 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-    return render_template('account.html', title='Account') #garden
+    return render_template('account.html', title='Account')
 
 @app.route("/index")
 def index():
@@ -78,10 +78,11 @@ def index():
 def map():
     form = ReusableForm()
     if form.validate_on_submit():
-        clothes = donationfind.get_places(form.zipcode.data)
+        # clothes = donationfind.get_places(form.zipcode.data)
+        flash('Success')
     else:
         flash("Please re-enter zipcode.")
-    return render_template('map.html')
+    return render_template('map.html', title='Map', form=form)
 
 @app.before_first_request
 def create_tables():
