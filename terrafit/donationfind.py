@@ -3,8 +3,10 @@ import requests
 from selenium import webdriver
 
 def get_places():
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
     PATH = "/Users/alliewu/Desktop/chromedriver"
-    driver = webdriver.Chrome(PATH)
+    driver = webdriver.Chrome(PATH, options=options)
     zip = '77005'
     link = 'http://google.com/maps/search/' + zip + '+donation+clothes/'
     driver.get(link)
@@ -14,6 +16,15 @@ def get_places():
     addresses = [a.text for a in names]
     don = {}
     for i in range(len(centers)):
-        don[centers[i]] = addresses[i]
+        if centers[i] != '':
+            don[centers[i]] = addresses[i]
+
+    driver.quit()
+    return don
+
+
+
+
+
 
 
