@@ -3,7 +3,7 @@ from terrafit import app, db, bcrypt
 from terrafit.forms import RegistrationForm, LoginForm
 from terrafit.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-import donationfind
+from terrafit import donationfind
 
 
 posts = [
@@ -21,7 +21,7 @@ posts = [
     }
 ]
 
-
+clothes = donationfind.get_places()
 
 @app.route("/garden")
 @login_required
@@ -77,7 +77,7 @@ def index():
 
 @app.route("/map")
 def map():
-    return render_template('map.html')
+    return render_template('map.html', clothes=clothes)
 
 @app.before_first_request
 def create_tables():
