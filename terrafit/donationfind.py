@@ -14,14 +14,16 @@ def get_places():
     centers = [f.text for f in places]
     names = driver.find_elements_by_class_name('section-result-location')
     addresses = [a.text for a in names]
-    don = {}
+    d = []
     for i in range(len(centers)):
-        if centers[i] != '':
-            don[centers[i]] = addresses[i]
+        if centers[i] != '' and addresses[i] != '':
+            don = {}
+            don['center'] = centers[i]
+            don['address'] = addresses[i]
+            d.append(don)
 
     driver.quit()
-    return don
-
+    return d
 
 
 
