@@ -79,7 +79,6 @@ def map():
     form = ReusableForm()
     if form.validate_on_submit():
         clothes = donationfind.get_places(form.zipcode.data)
-        flash('Success')
         return render_template('zip.html', clothes=clothes)
     return render_template('map.html', title='Map', form=form)
 
