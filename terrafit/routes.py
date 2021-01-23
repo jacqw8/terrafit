@@ -6,29 +6,18 @@ from flask_login import login_user, current_user, logout_user, login_required
 from terrafit import donationfind
 
 
-posts = [
-    {
-        'author': 'Jackie Wu',
-        'title': 'Blog Post 1',
-        'content': 'First post content',
-        'date_posted': 'April 20, 2018'
-    },
-    {
-        'author': 'Jane Doe',
-        'title': 'Blog Post 2',
-        'content': 'Second post content',
-        'date_posted': 'April 21, 2018'
-    }
-]
-
-
 @app.route("/garden", methods=['GET', 'POST'])
 @login_required
 def home():
     form = AnotherForm()
     if form.validate_on_submit():
-        num = form.number.data
-        return render_template('garden.html', title='Garden')
+        num = int(form.number.data)
+        arts = []
+        for i in range(num):
+            d = {}
+            d['x'] = 'x'
+            arts.append(d)
+        return render_template('garden.html', title='Garden', arts=arts)
     return render_template('flowers.html', title='Garden', form=form) # can add argument
 
 @app.route("/guides")

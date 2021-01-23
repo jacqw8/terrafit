@@ -1,6 +1,12 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <image src="{{ url_for('static', filename='images/flower1.png')}}"></image>
+    <h1>Your Virtual Garden!</h1>
+    <body>Thanks for donating!</body>
+    <br>
+    <br>
+    {% for a in arts %}
+        <image src="{{ url_for('static', filename='images/flower1.png')}}" width='100' height='100'>
+    {% endfor %}
 {% endblock content %}
 
 
