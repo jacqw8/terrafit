@@ -22,10 +22,13 @@ posts = [
 ]
 
 
-@app.route("/garden")
+@app.route("/garden", methods=['GET', 'POST'])
 @login_required
 def home():
-    return render_template('garden.html', title='Garden', posts=posts) # can add argument
+    form = ReusableForm()
+    if form.validate_on_submit():
+        return redirect(url_for('about'))
+    return render_template('garden.html', title='Garden') # can add argument
 
 @app.route("/guides")
 def about():
