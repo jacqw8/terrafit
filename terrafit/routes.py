@@ -25,11 +25,11 @@ posts = [
 @app.route("/garden")
 @login_required
 def home():
-    return render_template('home.html', posts=posts) # can add argument
+    return render_template('home.html', title='Garden', posts=posts) # can add argument
 
 @app.route("/guides")
 def about():
-    return render_template('about.html', title='About')
+    return render_template('about.html', title='Guides')
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -72,7 +72,7 @@ def account():
 
 @app.route("/index")
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title='Index')
 
 @app.route("/map", methods=['GET', 'POST'])
 def map():
