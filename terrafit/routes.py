@@ -3,6 +3,7 @@ from terrafit import app, db, bcrypt
 from terrafit.forms import RegistrationForm, LoginForm
 from terrafit.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
+import donationfind
 
 
 posts = [
@@ -20,12 +21,14 @@ posts = [
     }
 ]
 
-@app.route("/home")
+
+
+@app.route("/garden")
 @login_required
 def home():
     return render_template('home.html', posts=posts) # can add argument
 
-@app.route("/about")
+@app.route("/guides")
 def about():
     return render_template('about.html', title='About')
 
@@ -66,7 +69,7 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-    return render_template('account.html', title='Account')
+    return render_template('account.html', title='Account') #garden
 
 @app.route("/index")
 def index():
