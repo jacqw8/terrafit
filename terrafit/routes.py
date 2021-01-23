@@ -25,11 +25,11 @@ posts = [
 @app.route("/garden")
 @login_required
 def home():
-    return render_template('home.html', title='Garden', posts=posts) # can add argument
+    return render_template('garden.html', title='Garden', posts=posts) # can add argument
 
 @app.route("/guides")
 def about():
-    return render_template('about.html', title='Guides')
+    return render_template('guides.html', title='Guides')
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
