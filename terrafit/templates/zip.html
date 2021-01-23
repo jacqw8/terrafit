@@ -2,12 +2,12 @@
 {% block content %}
     <h1>Find where to donate</h1>
     {% for cloth in clothes %}
-        <div style="padding: 20px; border-radius: 4px; box-shadow: 0 0 3px black; max-width: 300px; margin: 20px;">
-            Donation Center: 
+        <div style="padding: 20px; border-radius: 4px; box-shadow: 0 0 3px black; max-width: 400px; margin: 20px;">
+            <strong>Center:</strong> 
             <br>
             {{ cloth.center }} 
             <br>
-            Address: 
+            <strong>Address:</strong>
             <br>{{ cloth.address }}
         </div>
         <!-- <div style="margin: 0;">Address: {{ cloth.address }}</h3> -->
