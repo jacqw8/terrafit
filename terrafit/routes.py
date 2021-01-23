@@ -78,10 +78,9 @@ def index():
 def map():
     form = ReusableForm()
     if form.validate_on_submit():
-        # clothes = donationfind.get_places(form.zipcode.data)
+        clothes = donationfind.get_places(form.zipcode.data)
         flash('Success')
-    else:
-        flash("Please re-enter zipcode.")
+        return render_template('zip.html', clothes=clothes)
     return render_template('map.html', title='Map', form=form)
 
 @app.before_first_request
