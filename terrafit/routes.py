@@ -28,7 +28,7 @@ def home():
     form = AnotherForm()
     if form.validate_on_submit():
         num = form.number.data
-        return redirect(url_for('about'))
+        return render_template('garden.html', title='Garden')
     return render_template('flowers.html', title='Garden', form=form) # can add argument
 
 @app.route("/guides")
