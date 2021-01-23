@@ -7,17 +7,17 @@
                 <legend class="border-bottom mb-4">How many articles of clothing did you donate?</legend>
                 
                 <div class="form-group">
-                    {{ form.zipcode.label(class="form-control-label") }}
+                    {{ form.number.label(class="form-control-label") }}
 
-                    {% if form.zipcode.errors %}
-                        {{ form.zipcode(class="form-control form-control-lg is-invalid") }}
+                    {% if form.number.errors %}
+                        {{ form.number(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
-                            {% for error in form.zipcode.errors %}
+                            {% for error in form.number.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.zipcode(class="form-control form=control-lg") }}
+                        {{ form.number(class="form-control form=control-lg") }}
                     {% endif %}
                     
                 </div>

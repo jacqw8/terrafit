@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from terrafit import app, db, bcrypt
-from terrafit.forms import RegistrationForm, LoginForm, ReusableForm
+from terrafit.forms import RegistrationForm, LoginForm, ReusableForm, AnotherForm
 from terrafit.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from terrafit import donationfind
@@ -25,10 +25,11 @@ posts = [
 @app.route("/garden", methods=['GET', 'POST'])
 @login_required
 def home():
-    form = ReusableForm()
+    form = AnotherForm()
     if form.validate_on_submit():
+        num = form.number.data
         return redirect(url_for('about'))
-    return render_template('garden.html', title='Garden') # can add argument
+    return render_template('flowers.html', title='Garden', form=form) # can add argument
 
 @app.route("/guides")
 def about():

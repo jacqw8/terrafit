@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from terrafit.models import User
 
@@ -30,4 +30,8 @@ class LoginForm(FlaskForm):
 
 class ReusableForm(FlaskForm):
     zipcode = StringField('Zipcode', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class AnotherForm(FlaskForm):
+    number = IntegerField('Number', validators=[DataRequired()])
     submit = SubmitField('Submit')
