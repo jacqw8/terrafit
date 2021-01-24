@@ -29,9 +29,9 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class ReusableForm(FlaskForm):
-    zipcode = StringField('Zipcode', validators=[DataRequired()])
+    zipcode = StringField('ZIP Code', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 class AnotherForm(FlaskForm):
-    number = IntegerField('Number', validators=[DataRequired()])
+    number = IntegerField('Number of articles', validators=[DataRequired()])
     submit = SubmitField('Submit')
