@@ -6,6 +6,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from terrafit import donationfind
 import os
 from werkzeug.utils import secure_filename
+from terrafit import keras
 
 
 @app.route("/garden", methods=['GET', 'POST'])
@@ -91,6 +92,11 @@ def upload_file():
     if filename != '':
         uploaded_file.save(os.path.join("terrafit/clothes", filename))
     return redirect(url_for('community'))
+
+@app.route('/shop', methods=['POST'])
+def shop():
+    category = keras.which_one()
+    return render_template('index.html', title='Shop')
 
 @app.before_first_request
 def create_tables():
