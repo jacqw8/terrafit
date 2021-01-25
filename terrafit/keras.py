@@ -2,7 +2,7 @@ import tensorflow.keras
 from PIL import Image, ImageOps
 import numpy as np
 
-def categorize():
+def which_one():
     # Disable scientific notation for clarity
     np.set_printoptions(suppress=True)
 
@@ -53,3 +53,12 @@ def categorize():
             b = el[2:]
 
     return b
+
+def cate():
+    f = open('/Users/alliewu/PycharmProjects/terrafit/terrafit/converted_keras/labels.txt', 'r')
+    l = f.read().splitlines()
+    categories = p[]
+    for el in l:
+        categories.append(el)
+
+    return categories
