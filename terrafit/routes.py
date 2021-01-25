@@ -4,6 +4,8 @@ from terrafit.forms import RegistrationForm, LoginForm, ReusableForm, AnotherFor
 from terrafit.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from terrafit import donationfind
+import os
+from werkzeug.utils import secure_filename
 
 
 @app.route("/garden", methods=['GET', 'POST'])
@@ -77,13 +79,15 @@ def map():
 
 @app.route("/community")
 def community():
-    return render_template('community.html', title='Community')
+    files = os.listdir('terrafit/clothes')
+    return render_template('community.html', title='Community', files=files)
 
 @app.route('/community', methods=['POST'])
 def upload_file():
     uploaded_file = request.files['file']
-    if uploaded_file.filename != '':
-        uploaded_file.save(uploaded_file.filename)
+    filename = secure_filename(uploaded_file.filename)
+    if filename != '':
+        uploaded_file.save(os.path.join("terrafit/clothes", filename))
     return redirect(url_for('community'))
 
 @app.before_first_request

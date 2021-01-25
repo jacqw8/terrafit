@@ -4,17 +4,21 @@
 <br>
 <br>
 <br>
-    <image src='58145_EWBN.png' width='100' height='100'></image>
-    <image src='Blue_Tshirt.jpg' width='100' height='100'></image>
-    <image src='shorts.jpg' width='100' height='100'></image>
-    <image src='tshirt.jpg' width='100' height='100'></image>
-    <image src='white_shirt.jpg' width='100' height='100'></image>
-    <image src='58145_EWBN.png' width='100' height='100'></image>
+    <!-- <img src='58145_EWBN.png' width='100' height='100'>
+    <img src='Blue_Tshirt.jpg' width='100' height='100'>
+    <img src='shorts.jpg' width='100' height='100'>
+    <img src='tshirt.jpg' width='100' height='100'>
+    <img src='white_shirt.jpg' width='100' height='100'>
+    <img src='58145_EWBN.png' width='100' height='100'> -->
     <h1>File Upload</h1>
     <form method="POST" action="" enctype="multipart/form-data">
       <p><input type="file" name="file"></p>
       <p><input type="submit" value="Submit"></p>
     </form>
+    {% for file in files %}
+      <img src="{{ url_for('community', filename=file) }}" width='100' height='100'>
+    {% endfor %}
+
     
     
 {% endblock content %}
