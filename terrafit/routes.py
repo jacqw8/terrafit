@@ -79,6 +79,13 @@ def map():
 def community():
     return render_template('community.html', title='Community')
 
+@app.route('/community', methods=['POST'])
+def upload_file():
+    uploaded_file = request.files['file']
+    if uploaded_file.filename != '':
+        uploaded_file.save(uploaded_file.filename)
+    return redirect(url_for('community'))
+
 @app.before_first_request
 def create_tables():
     db.create_all()
