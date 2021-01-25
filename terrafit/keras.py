@@ -7,7 +7,7 @@ def which_one():
     np.set_printoptions(suppress=True)
 
     # Load the model
-    model = tensorflow.keras.models.load_model('converted_keras/keras_model.h5')
+    model = tensorflow.keras.models.load_model('terrafit/converted_keras/keras_model.h5')
 
     # Create the array of the right shape to feed into the keras model
     # The 'length' or number of images you can put into the array is
@@ -15,7 +15,7 @@ def which_one():
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
     # Replace this with the path to your image
-    image = Image.open('tshirt.jpg')
+    image = Image.open('terrafit/clothes/tshirt.jpg')
 
     #resize the image to a 224x224 with the same strategy as in TM2:
     #resizing the image to be at least 224x224 and then cropping from the center
@@ -36,7 +36,7 @@ def which_one():
 
     # run the inference
     prediction = model.predict(data)
-    print(prediction)
+    # print(prediction)
 
     a = ''
     for i in range(prediction.shape[1]):
@@ -45,7 +45,7 @@ def which_one():
 
     # print(a)
 
-    f = open('/Users/alliewu/PycharmProjects/terrafit/terrafit/converted_keras/labels.txt', 'r')
+    f = open('terrafit/converted_keras/labels.txt', 'r')
     l = f.read().splitlines()
     b = ''
     for el in l:
@@ -55,10 +55,13 @@ def which_one():
     return b
 
 def cate():
-    f = open('/Users/alliewu/PycharmProjects/terrafit/terrafit/converted_keras/labels.txt', 'r')
+    f = open('terrafit/converted_keras/labels.txt', 'r')
     l = f.read().splitlines()
-    categories = p[]
+    categories = []
     for el in l:
-        categories.append(el)
+        categories.append(el[2:])
 
     return categories
+
+print(which_one())
+print(cate())
