@@ -75,6 +75,10 @@ def map():
         return render_template('zip.html', clothes=clothes)
     return render_template('map.html', title='Map', form=form)
 
+@app.route("/community")
+def community():
+    return render_template('community.html', title='Community')
+
 @app.before_first_request
 def create_tables():
     db.create_all()
