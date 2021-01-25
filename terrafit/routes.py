@@ -78,11 +78,13 @@ def map():
     return render_template('map.html', title='Map', form=form)
 
 @app.route("/community")
+@login_required
 def community():
     files = os.listdir('terrafit/clothes')
     return render_template('community.html', title='Community', files=files)
 
 @app.route('/community', methods=['POST'])
+@login_required
 def upload_file():
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)

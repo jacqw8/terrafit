@@ -15,10 +15,11 @@
       <p><input type="file" name="file"></p>
       <p><input type="submit" value="Submit"></p>
     </form>
-    {% for file in files %}
+    <!-- {% for file in files %}
       <img src="{{ url_for('community', filename=file) }}" width='100' height='100'>
+    {% endfor %} -->
+    {% for file in files %}
+        <img src="terrafit/clothes/"+ file; width="100" height="100">
     {% endfor %}
-
-    
     
 {% endblock content %}
