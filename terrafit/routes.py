@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, send_from_directory
+from flask import render_template, url_for, flash, redirect, request, send_from_directory, abort
 from terrafit import app, db, bcrypt
 from terrafit.forms import RegistrationForm, LoginForm, ReusableForm, AnotherForm
 from terrafit.models import User, Post
@@ -78,6 +78,14 @@ def map():
         return render_template('zip.html', clothes=clothes)
     return render_template('map.html', title='Map', form=form)
 
+def validate_image(stream):
+    header = stream.read(512)  # 512 bytes should be enough for a header check
+    stream.seek(0)  # reset stream pointer
+    format = imghdr.what(None, header)
+    if not format:
+        return None
+    return '.' + (format if format != 'jpeg' else 'jpg')
+
 @app.route("/community")
 @login_required
 def community():
@@ -90,17 +98,18 @@ def upload_file():
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
     if filename != '':
+        file_ext = os.path.splitext(filename)[1]
         uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
     return redirect(url_for('community'))
+
+@app.route('/clothes/<filename>')
+def upload(filename):
+    return send_from_directory(app.config['UPLOAD_PATH'], filename)
 
 # category = keras.which_one()
 @app.route('/shop')
 def shop():
     return render_template('shop.html', title='Shop')
-
-@app.route('/terrafit/clothes/<filename>')
-def upload(filename):
-    return send_from_directory(app.config['UPLOAD_PATH'], filename)
 
 @app.before_first_request
 def create_tables():
