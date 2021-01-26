@@ -107,7 +107,7 @@ def upload(filename):
     return send_from_directory(app.config['UPLOAD_PATH'], filename)
 
 # category = keras.which_one()
-@app.route('/shop')
+@app.route('/scan')
 def shop():
     return render_template('shop.html', title='Shop')
 
