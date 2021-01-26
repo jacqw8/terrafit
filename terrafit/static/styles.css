@@ -154,6 +154,11 @@ sup {
   top: -0.5em;
 }
 
+footer{
+  text-align: center;
+  padding-top: 2rem;
+}
+
 a {
   color: #f4623a;
   text-decoration: none;
@@ -487,10 +492,11 @@ mark,
 
 #img-bg {
   height: auto;
-  width: 35%;
+  width: 40%;
   float: right;
   padding-right: 2rem;
   padding-top: 6%;
+  padding-bottom: 0.5rem;
 }
 
 .img-thumbnail {
@@ -10056,7 +10062,7 @@ hr.light {
   color: #f4623a;
 }
 #mainNav .navbar-nav .nav-item .nav-link.active {
-  color:   !important;
+  color: #995d15!important;
 }
 @media (min-width: 992px) {
   #mainNav {
