@@ -93,10 +93,10 @@ def upload_file():
         uploaded_file.save(os.path.join("terrafit/clothes", filename))
     return redirect(url_for('community'))
 
-@app.route('/shop', methods=['POST'])
+# category = keras.which_one()
+@app.route('/shop')
 def shop():
-    category = keras.which_one()
-    return render_template('index.html', title='Shop')
+    return render_template('shop.html', title='Shop')
 
 @app.before_first_request
 def create_tables():

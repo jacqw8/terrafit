@@ -15,7 +15,7 @@ def which_one():
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
     # Replace this with the path to your image
-    image = Image.open('terrafit/clothes/tshirt.jpg')
+    image = Image.open('terrafit/clothes/shirt.jpg')
 
     #resize the image to a 224x224 with the same strategy as in TM2:
     #resizing the image to be at least 224x224 and then cropping from the center
@@ -52,7 +52,11 @@ def which_one():
         if a in el:
             b = el[2:]
 
-    return b
+    d = []
+    c = {}
+    c['type'] = b
+    d.append(c)
+    return d
 
 def cate():
     f = open('terrafit/converted_keras/labels.txt', 'r')
@@ -64,4 +68,4 @@ def cate():
     return categories
 
 print(which_one())
-print(cate())
+# print(cate())
