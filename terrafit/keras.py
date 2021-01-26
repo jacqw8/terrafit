@@ -67,5 +67,5 @@ def cate():
 
     return categories
 
-print(which_one())
+# print(which_one())
 # print(cate())

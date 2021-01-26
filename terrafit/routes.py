@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, send_from_directory
 from terrafit import app, db, bcrypt
 from terrafit.forms import RegistrationForm, LoginForm, ReusableForm, AnotherForm
 from terrafit.models import User, Post
@@ -81,7 +81,7 @@ def map():
 @app.route("/community")
 @login_required
 def community():
-    files = os.listdir('terrafit/clothes')
+    files = os.listdir(app.config['UPLOAD_PATH'])
     return render_template('community.html', title='Community', files=files)
 
 @app.route('/community', methods=['POST'])
@@ -90,13 +90,17 @@ def upload_file():
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
     if filename != '':
-        uploaded_file.save(os.path.join("terrafit/clothes", filename))
+        uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
     return redirect(url_for('community'))
 
 # category = keras.which_one()
 @app.route('/shop')
 def shop():
     return render_template('shop.html', title='Shop')
+
+@app.route('/terrafit/clothes/<filename>')
+def upload(filename):
+    return send_from_directory(app.config['UPLOAD_PATH'], filename)
 
 @app.before_first_request
 def create_tables():
