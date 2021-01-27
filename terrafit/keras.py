@@ -1,8 +1,9 @@
 import tensorflow.keras
 from PIL import Image, ImageOps
 import numpy as np
+import os
 
-def which_one():
+def which_one(img):
     # Disable scientific notation for clarity
     np.set_printoptions(suppress=True)
 
@@ -13,9 +14,9 @@ def which_one():
     # The 'length' or number of images you can put into the array is
     # determined by the first position in the shape tuple, in this case 1.
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-
+    
     # Replace this with the path to your image
-    image = Image.open('terrafit/clothes/shirt.jpg')
+    image = Image.open(img)
 
     #resize the image to a 224x224 with the same strategy as in TM2:
     #resizing the image to be at least 224x224 and then cropping from the center
@@ -67,17 +68,17 @@ def cate():
 
     return categories
 
-def main():
+def main(img):
     c = cate()
-    w = which_one()[0]['type']
+    w = which_one(img)[0]['type']
     if w == 'shirt':
         c.pop(0)
     elif w == 'shorts':
         c.pop(1)
-        c.pop(2)
+        c.pop(1)
     else:
         c.pop(1)
-        c.pop(2)
+        c.pop(1)
     return c
 
 # print(which_one())

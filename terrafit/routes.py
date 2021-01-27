@@ -109,14 +109,10 @@ def upload(filename):
 # category = keras.which_one()
 @app.route('/shop')
 def shop():
-    c = keras.main()
-    files = []
-    for i in range(len(c)):
-        cwd = os.getcwd() + '/terrafit/ml_clothes/' + c[i]
-        f = os.listdir(cwd)
-        for j in range(len(f)):
-            files.append(f[j])
-    return render_template('shop.html', title='Shop', files=files)
+    cwd = os.getcwd() + '/terrafit/ml_clothes/new'
+    if len(os.listdir(cwd)) > 0:
+        os.remove(cwd + '/' + os.listdir(cwd)[0])
+    return render_template('account.html', title='Shop')
 
 @app.route('/shop', methods=['POST'])
 @login_required
@@ -127,7 +123,21 @@ def upload_file2():
         file_ext = os.path.splitext(filename)[1]
         cwd = os.getcwd() + '/terrafit/ml_clothes/new'
         uploaded_file.save(os.path.join(cwd, filename))
-    return redirect(url_for('community'))
+    return redirect(url_for('scan'))
+
+@app.route('/scan')
+@login_required
+def scan():
+    cwd = os.getcwd() + '/terrafit/ml_clothes/new'
+    img = os.listdir(cwd)[0]
+    c = keras.main(cwd + '/' + img)
+    files = []
+    for i in range(len(c)):
+        cwd = os.getcwd() + '/terrafit/ml_clothes/' + c[i]
+        f = os.listdir(cwd)
+        for j in range(len(f)):
+            files.append(f[j])
+    return render_template('shop.html', files=files)
 
 @app.route('/ml_clothes/new/<filename>')
 def upload2(filename):
