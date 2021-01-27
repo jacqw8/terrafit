@@ -68,4 +68,4 @@ def cate():
     return categories
 
 # print(which_one())
-# print(cate())
+# print(cate()[0])
