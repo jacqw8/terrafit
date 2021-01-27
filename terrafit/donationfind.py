@@ -21,6 +21,7 @@ def get_places(zip):
             don['address'] = addresses[i]
             d.append(don)
 
+    driver.close()
     driver.quit()
     return d
 
