@@ -56,6 +56,13 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
+}
+
+.layout-bg{
+  background-color: #fbfcfb;
+}
+
+.index-bg{
   background-color: #9ece7d;
 }
 
@@ -83,6 +90,10 @@ header{
 }
 p {
   margin-top: 0;
+}
+
+form {
+  align-items: center;
 }
 
 abbr[title],
@@ -315,7 +326,7 @@ legend {
   max-width: 100%;
   padding: 0;
   margin-bottom: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   line-height: inherit;
   color: inherit;
   white-space: normal;
@@ -374,7 +385,8 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-size: 2rem;
+  font-size: 3rem;
+  color:#616d62;
 }
 
 h3, .h3 {
@@ -429,7 +441,11 @@ h6, .h6 {
   font-weight: 300;
   line-height: 1.2;
 }
-
+.content {
+  max-width: 500px;
+  margin: auto;
+  padding-top:5rem;
+}
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -486,7 +502,7 @@ mark,
 }
 
 .img-fluid {
-  max-width: 25%;
+  max-width: 150px;
   height: auto; 
 }
 
@@ -568,9 +584,9 @@ pre code {
 .container-sm {
   width: 100%;
   padding-right: 15px;
-  padding-left: 15px;
+  margin-left:1rem;
   margin-right: auto;
-  margin-left: auto;
+  
 }
 
 @media (min-width: 576px) {
@@ -2121,8 +2137,9 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 1rem;
-  color:#fff;
+  color:#616d62;
   font-weight: 500;
+  text-align: center;
 }
 
 .form-text {
@@ -3897,7 +3914,7 @@ input[type=button].btn-block {
   margin-bottom: 0;
   list-style: none;
   position:absolute;
-  background-color: #63544a;
+  background-color: #9ece7d;
 }
 
 .nav-link {
@@ -3980,10 +3997,10 @@ input[type=button].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  background-color: #63544a;
+  background-color: #9ece7d;
 }
 .navbar-bg-dark{
-  background-color: #63544a;
+  background-color: #9ece7d;
 }
 
 .navbar .container,
@@ -10043,7 +10060,7 @@ hr.light {
 
 #mainNav {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  background-color: #63544a;
+  background-color: #9ece7d;
   transition: background-color 0.2s ease;
 }
 #mainNav .navbar-brand {
@@ -10067,7 +10084,7 @@ hr.light {
 @media (min-width: 992px) {
   #mainNav {
     box-shadow: none;
-    background-color: transparent;
+    background-color: #9ece7d;
   }
   #mainNav .navbar-brand {
     color: rgba(255, 255, 255, 0.7);

@@ -9,7 +9,7 @@
 
       <link href="static/styles.css" rel="stylesheet" />
     </head>
-    <body>
+    <body class="layout-bg">
           <!-- Navigation-->
         <nav class="navbar navbar-bg-dark navbar-expand-lg navbar-dark fixed-top py-3" id="mainNav">
           <div class="container">
@@ -35,9 +35,9 @@
           </div>
       </nav>
       
-        <main role="main" class="container">
-          <div class="row">
-            <div class="col-md-8">
+        <main role="main" class="layout-bg">
+          <div>
+            <div>
               {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                   {% for category, message in messages %}
