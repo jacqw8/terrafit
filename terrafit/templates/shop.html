@@ -1,14 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Shop</h1>
-    <!-- {% for cat in category %}
-        <div style="padding: 20px; border-radius: 4px; box-shadow: 0 0 3px black; max-width: 400px; margin: 20px;">
-            <strong>Donation Center:</strong> 
-            <br>
-            {{ cat.type }} 
-            <br>
-        </div>
-    {% endfor %} -->
+
+<h1>File Upload</h1>
+<form method="POST" action="" enctype="multipart/form-data">
+  <p><input type="file" name="file"></p>
+  <p><input type="submit" value="Submit"></p>
+</form>
+
+{% for file in files %}
+    <img src="{{ url_for('upload', filename=file) }}"; width="100" height="100">
+{% endfor %}
+
+    <!-- <h1>Shop</h1>
     <div>Try scanning your clothes!</div>
 <button type="button" onclick="init()">Start</button>
 <div id="webcam-container"></div>
@@ -67,6 +70,6 @@
             labelContainer.childNodes[i].innerHTML = classPrediction;
         }
     }
-</script>
+</script> -->
 
 {% endblock content %}

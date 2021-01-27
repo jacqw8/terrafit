@@ -109,7 +109,31 @@ def upload(filename):
 # category = keras.which_one()
 @app.route('/shop')
 def shop():
-    return render_template('shop.html', title='Shop')
+    c = keras.main()
+    files = []
+    for i in range(len(c)):
+        cwd = os.getcwd() + '/terrafit/ml_clothes/' + c[i]
+        f = os.listdir(cwd)
+        for j in range(len(f)):
+            files.append(f[j])
+    return render_template('shop.html', title='Shop', files=files)
+
+@app.route('/shop', methods=['POST'])
+@login_required
+def upload_file2():
+    uploaded_file = request.files['file']
+    filename = secure_filename(uploaded_file.filename)
+    if filename != '':
+        file_ext = os.path.splitext(filename)[1]
+        cwd = os.getcwd() + '/terrafit/ml_clothes/new'
+        uploaded_file.save(os.path.join(cwd, filename))
+    return redirect(url_for('community'))
+
+@app.route('/ml_clothes/new/<filename>')
+def upload2(filename):
+    cwd = os.getcwd() + '/terrafit/ml_clothes/new'
+    return send_from_directory(cwd, filename)
+
 
 @app.before_first_request
 def create_tables():
