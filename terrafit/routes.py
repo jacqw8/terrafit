@@ -109,7 +109,7 @@ def upload(filename):
 # category = keras.which_one()
 @app.route('/shop')
 def shop():
-    c = keras.cate()
+    c = keras.main()
     files = []
     for i in range(len(c)):
         cwd = os.getcwd() + '/terrafit/ml_clothes/' + c[i]

@@ -67,5 +67,19 @@ def cate():
 
     return categories
 
+def main():
+    c = cate()
+    w = which_one()[0]['type']
+    if w == 'shirt':
+        c.pop(0)
+    elif w == 'shorts':
+        c.pop(1)
+        c.pop(2)
+    else:
+        c.pop(1)
+        c.pop(2)
+    return c
+
 # print(which_one())
-# print(cate()[0])
+# print(cate())
+# print(main())
