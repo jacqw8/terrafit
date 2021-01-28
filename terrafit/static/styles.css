@@ -66,6 +66,12 @@ body {
   background-color: #9ece7d;
 }
 
+.garden-bg{
+  background-image: url(images/garden_fence1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 main {
   display: block;
   margin-top: 5rem;
@@ -444,7 +450,7 @@ h6, .h6 {
 .content {
   max-width: 500px;
   margin: auto;
-  padding-top:5rem;
+  padding-top:3rem;
 }
 hr {
   margin-top: 1rem;

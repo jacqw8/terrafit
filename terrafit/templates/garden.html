@@ -1,13 +1,15 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="content">
-    <h2>Your Virtual Garden!</h2>
-    <body>Thanks for donating!</body>
-    <br>
-    <br>
+
+    <h2 style="text-align:center">Your Virtual Garden!</h2>
+    <p style="text-align:center">Thanks for donating!</p>
+
+    <div class="garden-bg">
     {% for a in arts %}
-        <image src="{{ url_for('static', filename='images/flower1.png')}}" width='100' height='100'>
+        <image src="{{ url_for('static', filename='images/Garden_Flowers/rose.png')}}" width='75' height='auto'>
     {% endfor %}
+    </div>
 </div>
 {% endblock content %}
 
