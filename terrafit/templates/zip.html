@@ -1,6 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
     <h2>Find where to donate</h2>
+    <form method="POST" action="">
+        <div class="form-group">
+            <input type="submit" value="Click here to try another zip code">
+        </div>
+    </form>
     {% for cloth in clothes %}
         <div style="padding: 20px; border-radius: 4px; box-shadow: 0 0 3px black; max-width: 400px; margin: 20px;">
             <strong>Donation Center:</strong> 

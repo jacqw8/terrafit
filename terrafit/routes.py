@@ -76,8 +76,15 @@ def map():
     form = ReusableForm()
     if form.validate_on_submit():
         clothes = donationfind.get_places(form.zipcode.data)
-        return render_template('zip.html', clothes=clothes)
+        return render_template('zip.html', clothes=clothes, form=form)
     return render_template('map.html', title='Map', form=form)
+
+@app.route("/map", methods=['GET', 'POST'])
+def zip():
+    form = ReusableForm()
+    if form.validate_on_submit():
+        clothes = donationfind.get_places(form.zipcode.data)
+        return render_template('zip.html', clothes=clothes, form=form)
 
 def validate_image(stream):
     header = stream.read(512)  # 512 bytes should be enough for a header check
@@ -138,7 +145,12 @@ def scan():
         f = os.listdir(cwd)
         for j in range(len(f)):
             files.append(f[j])
-    return render_template('shop.html', files=files)
+    news = []
+    cwd = os.getcwd() + '/terrafit/ml_clothes/new'
+    where = os.listdir(cwd)
+    for i in range(len(where)):
+        news.append(where[i])
+    return render_template('shop.html', files=files, news=news)
 
 @app.route('/ml_clothes/new/<filename>')
 def upload2(filename):
