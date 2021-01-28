@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, send_from_directory, abort
+from flask import render_template, url_for, flash, redirect, request, send_from_directory, Response
 from terrafit import app, db, bcrypt
 from terrafit.forms import RegistrationForm, LoginForm, ReusableForm, AnotherForm
 from terrafit.models import User, Post
@@ -63,10 +63,10 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route("/account")
-@login_required
-def account():
-    return render_template('account.html', title='Account')
+# @app.route("/account")
+# @login_required
+# def account():
+#     return render_template('account.html', title='Account')
 
 @app.route("/index")
 def index():
@@ -129,7 +129,6 @@ def upload_file2():
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
     if filename != '':
-        file_ext = os.path.splitext(filename)[1]
         cwd = os.getcwd() + '/terrafit/ml_clothes/new'
         uploaded_file.save(os.path.join(cwd, filename))
     return redirect(url_for('scan'))
@@ -158,6 +157,9 @@ def upload2(filename):
     cwd = os.getcwd() + '/terrafit/ml_clothes/new'
     return send_from_directory(cwd, filename)
 
+@app.route('/video')
+def video_feed():
+    return Response(webcam.gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.before_first_request
 def create_tables():
