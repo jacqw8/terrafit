@@ -7,6 +7,7 @@ from terrafit import donationfind
 import os
 from werkzeug.utils import secure_filename
 from terrafit import keras
+import random
 
 
 @app.route("/garden", methods=['GET', 'POST'])
