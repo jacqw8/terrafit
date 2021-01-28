@@ -96,6 +96,7 @@ header{
 }
 p {
   margin-top: 0;
+  color: #7a897b;
 }
 
 form {
@@ -410,6 +411,7 @@ h5, .h5 {
 
 h6, .h6 {
   font-size: 1rem;
+  color:#7a897b;
 }
 
 .call-out{
@@ -452,6 +454,7 @@ h6, .h6 {
   max-width: 500px;
   margin: auto;
   padding-top:3rem;
+  text-align: center;
 }
 hr {
   margin-top: 1rem;
@@ -2142,11 +2145,21 @@ textarea.form-control {
   height: auto;
 }
 
+.form-center-dimensions{
+  height: auto;
+  width: 100%
+}
+
+.form-left-dimensions{
+  height: auto;
+  width: 40%;
+  padding-left: 5rem;
+}
+
 .form-group {
   margin-bottom: 1rem;
   color:#616d62;
   font-weight: 500;
-  text-align: center;
 }
 
 .form-text {
