@@ -123,7 +123,7 @@ def shop():
         os.remove(cwd + '/' + os.listdir(cwd)[0])
     return render_template('account.html', title='Shop')
 
-@app.route('/shop', methods=['POST'])
+@app.route('/shop') #, methods=['POST']
 @login_required
 def upload_file2():
     uploaded_file = request.files['file']
@@ -160,6 +160,11 @@ def upload2(filename):
 @app.route('/video')
 def video_feed():
     return Response(webcam.gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/shot')
+def shot():
+    webcam.screenshot()
+    return render_template('shop.html')
 
 @app.before_first_request
 def create_tables():

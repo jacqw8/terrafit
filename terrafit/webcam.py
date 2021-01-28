@@ -1,5 +1,7 @@
 import cv2
 import os
+import time
+import pyscreenshot as ImageGrab
 
 # def cam():
 #     cam = cv2.VideoCapture(0)
@@ -28,8 +30,10 @@ import os
 
 camera = cv2.VideoCapture(0)
 def gen_frames():
+    seconds = time.time()
     while True:
         success, frame = camera.read()  # read the camera frame
+        # screenshot()
         if not success:
             break
         else:
@@ -37,4 +41,13 @@ def gen_frames():
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
+
+            # screenshot()
+
+def screenshot():
+    time.sleep(5)
+    im = ImageGrab.grab()
+    img_name = 'im.png'
+    path = os.getcwd() + '/terrafit/ml_clothes/new/' + img_name
+    im.save(path)
 
