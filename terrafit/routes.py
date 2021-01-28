@@ -8,6 +8,7 @@ import os
 from werkzeug.utils import secure_filename
 from terrafit import keras
 import random
+from terrafit import webcam
 
 
 @app.route("/garden", methods=['GET', 'POST'])
