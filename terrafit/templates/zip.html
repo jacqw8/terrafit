@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
+<<<<<<< HEAD
     <div class="content">
         <h2>Find where to donate:</h2>
         {% for cloth in clothes %}
@@ -13,5 +14,23 @@
             </div>
         {% endfor %}
     </div>
+=======
+    <h2>Find where to donate</h2>
+    <form method="POST" action="">
+        <div class="form-group">
+            <input type="submit" value="Click here to try another zip code">
+        </div>
+    </form>
+    {% for cloth in clothes %}
+        <div style="padding: 20px; border-radius: 4px; box-shadow: 0 0 3px black; max-width: 400px; margin: 20px;">
+            <strong>Donation Center:</strong> 
+            <br>
+            {{ cloth.center }} 
+            <br>
+            <strong>Address:</strong>
+            <br>{{ cloth.address }}
+        </div>
+    {% endfor %}
+>>>>>>> c9513caea9a850a2bf8cfb71ccbd3b18097a1e86
 {% endblock content %}
 

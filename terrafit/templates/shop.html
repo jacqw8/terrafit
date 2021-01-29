@@ -8,7 +8,12 @@
 </form> -->
 
 <h2>Here are clothing suggestions from our website based on your scanned item!</h2>
-
+<p>Your item:</p>
+{% for new in news %}
+    <img src="{{ url_for('upload2', filename=new) }}"; width="200" height="200">
+{% endfor %}
+<br>
+<p>Suggested items:</p>
 {% for file in files %}
     <img src="{{ url_for('upload', filename=file) }}"; width="200" height="200">
 {% endfor %}

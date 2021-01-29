@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, send_from_directory, abort
+from flask import render_template, url_for, flash, redirect, request, send_from_directory, Response
 from terrafit import app, db, bcrypt
 from terrafit.forms import RegistrationForm, LoginForm, ReusableForm, AnotherForm
 from terrafit.models import User, Post
@@ -8,6 +8,7 @@ import os
 from werkzeug.utils import secure_filename
 from terrafit import keras
 import random
+from terrafit import webcam
 
 
 @app.route("/garden", methods=['GET', 'POST'])
@@ -62,10 +63,10 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route("/account")
-@login_required
-def account():
-    return render_template('account.html', title='Account')
+# @app.route("/account")
+# @login_required
+# def account():
+#     return render_template('account.html', title='Account')
 
 @app.route("/index")
 def index():
@@ -76,8 +77,15 @@ def map():
     form = ReusableForm()
     if form.validate_on_submit():
         clothes = donationfind.get_places(form.zipcode.data)
-        return render_template('zip.html', clothes=clothes)
+        return render_template('zip.html', clothes=clothes, form=form)
     return render_template('map.html', title='Map', form=form)
+
+@app.route("/map", methods=['GET', 'POST'])
+def zip():
+    form = ReusableForm()
+    if form.validate_on_submit():
+        clothes = donationfind.get_places(form.zipcode.data)
+        return render_template('zip.html', clothes=clothes, form=form)
 
 def validate_image(stream):
     header = stream.read(512)  # 512 bytes should be enough for a header check
@@ -115,13 +123,12 @@ def shop():
         os.remove(cwd + '/' + os.listdir(cwd)[0])
     return render_template('account.html', title='Shop')
 
-@app.route('/shop', methods=['POST'])
+@app.route('/shop') #, methods=['POST']
 @login_required
 def upload_file2():
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
     if filename != '':
-        file_ext = os.path.splitext(filename)[1]
         cwd = os.getcwd() + '/terrafit/ml_clothes/new'
         uploaded_file.save(os.path.join(cwd, filename))
     return redirect(url_for('scan'))
@@ -138,13 +145,26 @@ def scan():
         f = os.listdir(cwd)
         for j in range(len(f)):
             files.append(f[j])
-    return render_template('shop.html', files=files)
+    news = []
+    cwd = os.getcwd() + '/terrafit/ml_clothes/new'
+    where = os.listdir(cwd)
+    for i in range(len(where)):
+        news.append(where[i])
+    return render_template('shop.html', files=files, news=news)
 
 @app.route('/ml_clothes/new/<filename>')
 def upload2(filename):
     cwd = os.getcwd() + '/terrafit/ml_clothes/new'
     return send_from_directory(cwd, filename)
 
+@app.route('/video')
+def video_feed():
+    return Response(webcam.gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/shot')
+def shot():
+    webcam.screenshot()
+    return render_template('shop.html')
 
 @app.before_first_request
 def create_tables():
