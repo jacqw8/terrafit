@@ -7,8 +7,10 @@ from terrafit import donationfind
 import os
 from werkzeug.utils import secure_filename
 from terrafit import keras
-import random
 from terrafit import webcam
+import time
+import pyscreenshot as ImageGrab
+from PIL import Image
 
 
 @app.route("/garden", methods=['GET', 'POST'])
@@ -123,15 +125,15 @@ def shop():
         os.remove(cwd + '/' + os.listdir(cwd)[0])
     return render_template('account.html', title='Shop')
 
-@app.route('/shop') #, methods=['POST']
-@login_required
-def upload_file2():
-    uploaded_file = request.files['file']
-    filename = secure_filename(uploaded_file.filename)
-    if filename != '':
-        cwd = os.getcwd() + '/terrafit/ml_clothes/new'
-        uploaded_file.save(os.path.join(cwd, filename))
-    return redirect(url_for('scan'))
+# @app.route('/shop') #, methods=['POST']
+# @login_required
+# def upload_file2():
+#     uploaded_file = request.files['file']
+#     filename = secure_filename(uploaded_file.filename)
+#     if filename != '':
+#         cwd = os.getcwd() + '/terrafit/ml_clothes/new'
+#         uploaded_file.save(os.path.join(cwd, filename))
+#     return redirect(url_for('scan'))
 
 @app.route('/scan')
 @login_required
@@ -161,10 +163,28 @@ def upload2(filename):
 def video_feed():
     return Response(webcam.gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+
 @app.route('/shot')
 def shot():
-    webcam.screenshot()
-    return render_template('shop.html')
+    time.sleep(2)
+    im = ImageGrab.grab()
+    img_name = 'im.png'
+    path = os.getcwd() + '/terrafit/ml_clothes/new/' + img_name
+    im.save(path)
+    img = Image.open(path)
+    width, height = im.size
+    # Setting the points for cropped image
+    left = 0
+    top = height / 4 + 50
+    right = width / 2 + 150
+    bottom = height
+
+    # Cropped image of above dimension
+    # (It will not change orginal image)
+    im1 = im.crop((left, top, right, bottom))
+    os.remove(path)
+    im1.save(path)
+
 
 @app.before_first_request
 def create_tables():

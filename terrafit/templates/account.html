@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>File Upload</h1>
+<h1>Scan your item</h1>
 <img src="{{ url_for('video_feed') }}" width="75%">
 <!--<input type="submit" value="Submit">-->
 <img src="{{ url_for('shot') }}">
+
+
+<a href="{{ url_for('scan') }}">Ready?</a>
 <!--<form method="POST" action="" enctype="multipart/form-data">-->
 <!--&lt;!&ndash;  <p><input type="file" name="file"></p>&ndash;&gt;-->
 <!--  <p><input type="submit" value="Submit"></p>-->
