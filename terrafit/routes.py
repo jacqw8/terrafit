@@ -70,7 +70,7 @@ def logout():
 # def account():
 #     return render_template('account.html', title='Account')
 
-@app.route("/index")
+@app.route("/index", methods=['GET'])
 def index():
     return render_template('index.html', title='Index')
 
