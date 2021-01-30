@@ -6,7 +6,7 @@
   <p><input type="file" name="file"></p>
   <p><input type="submit" value="Submit"></p>
 </form> -->
-
+<div class="content">
 <h2>Here are clothing suggestions from our website based on your scanned item!</h2>
 <!--<p>Your item:</p>-->
 <!--{% for new in news %}-->
@@ -17,7 +17,7 @@
 {% for file in files %}
     <img src="{{ url_for('upload', filename=file) }}"; width="200" height="200">
 {% endfor %}
-
+</div>
     <!-- <h1>Shop</h1>
     <div>Try scanning your clothes!</div>
 <button type="button" onclick="init()">Start</button>
