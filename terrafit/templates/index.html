@@ -51,7 +51,7 @@
                 {% if current_user.is_authenticated %}
                 <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{ url_for('register') }}">My Garden!</a>
                 {% else %}
-                <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{ url_for('flowers') }}">Register Now!</a>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{ url_for('home') }}">Register Now!</a>
                 {% endif %}
             </div>
         </div>
