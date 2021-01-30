@@ -72,6 +72,7 @@ body {
   background-size: cover;
 }
 
+
 main {
   display: block;
   margin-top: 5rem;
@@ -514,6 +515,11 @@ mark,
 .img-fluid {
   max-width: 150px;
   height: auto; 
+}
+
+.guides-bg {
+  width:100%;
+  height: auto;
 }
 
 #img-bg {
