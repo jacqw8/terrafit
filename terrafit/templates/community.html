@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<br>
-<br>
-<br>
-    <h2>Community</h2>
+<div class="content">
+    <h2 style="padding-bottom:1rem">Community</h2>
+    <h3>Connect with your friends!</h3>
     <form method="POST" action="" enctype="multipart/form-data">
       <p><input type="file" name="file"></p>
       <p><input type="submit" value="Submit"></p>
@@ -15,5 +14,5 @@
     {% for file in files %}
         <img src="{{ url_for('upload', filename=file) }}"; width="200" height="200">
     {% endfor %}
-    
+</div>    
 {% endblock content %}

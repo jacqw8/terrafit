@@ -5,7 +5,7 @@ from selenium import webdriver
 def get_places(zip):
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
-    PATH = "/Users/alliewu/Desktop/chromedriver"
+    PATH = "/Users/Theo/chromedriver_win32/chromedriver"
     driver = webdriver.Chrome(PATH, options=options)
     link = 'http://google.com/maps/search/' + zip + '+donation+clothes/'
     driver.get(link)

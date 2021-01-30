@@ -6,7 +6,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from terrafit import donationfind
 import os
 from werkzeug.utils import secure_filename
-from terrafit import keras
+#from terrafit import keras
 from terrafit import webcam
 import time
 import pyscreenshot as ImageGrab
@@ -108,7 +108,7 @@ def community():
 def upload_file():
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
-    if filename != '':
+    if filename != '' and filename != '/clothes/.DS_Store':
         file_ext = os.path.splitext(filename)[1]
         uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
     return redirect(url_for('community'))
